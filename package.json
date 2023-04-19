@@ -1,0 +1,38 @@
+{
+  "name": "@ketch-sdk/ketch-agent",
+  "version": "0.0.1",
+  "description": "Ketch TypeScript/JavaScript Module for Ketch DSR Agent",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "type": "commonjs",
+  "scripts": {
+    "all": "npm run lint && npm run format-check && npm run test && npm run build && npm run docs",
+    "build": "tsc -p .",
+    "format": "prettier --write \"**/*.{ts,tsx,yml,yaml}\"",
+    "format-check": "prettier --check '**/*.ts'",
+    "lint": "eslint src/**/*.ts",
+    "test": "jest --runInBand --passWithNoTests",
+    "docs": "typedoc --githubPages true src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ketch-sdk/ketch-agent.git"
+  },
+  "author": "Ketch Kloud, Inc. (https://www.ketch.com/)",
+  "license": "MIT",
+  "homepage": "https://github.com/ketch-sdk/ketch-agent#readme",
+  "bugs": {
+    "url": "https://github.com/ketch-sdk/ketch-agent/issues"
+  },
+  "files": [
+    "./dist/"
+  ],
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "typedoc": "^0.24.4",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "tslib": "^2.5.0"
+  }
+}
