@@ -1,4 +1,34 @@
 /**
+ * The status of the Data Subject Request.
+ */
+export enum RequestStatus {
+  UnknownRequestStatus = 'unknown',
+  PendingRequestStatus = 'pending',
+  InProgressRequestStatus = 'in_progress',
+  CompletedRequestStatus = 'completed',
+  CancelledRequestStatus = 'cancelled',
+  DeniedRequestStatus = 'denied',
+}
+
+/**
+ * The reason for the status of the Data Subject Request.
+ */
+export enum RequestStatusReason {
+  UnknownRequestStatusReason = 'unknown',
+  NeedUserVerificationRequestStatusReason = 'need_user_verification',
+  Requested = 'requested',
+  InsufficientIdentification = 'insufficient_identification',
+  Executed = 'executed',
+  SuspectedFraudRequestStatusReason = '`suspected_fraud`',
+  InsufficientVerificationRequestStatusReason = 'insufficient_verification',
+  NoMatchRequestStatusReason = 'no_match',
+  ClaimNotCoveredRequestStatusReason = 'claim_not_covered',
+  OutsideJurisdictionRequestStatusReason = 'outside_jurisdiction',
+  TooManyRequestsRequestStatusReason = 'too_many_requests',
+  OtherRequestStatusReason = 'other',
+}
+
+/**
  * Kind of the request and response. Also used in type narrowing.
  */
 export enum Kind {
