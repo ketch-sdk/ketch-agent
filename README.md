@@ -11,7 +11,7 @@ Currently, we support scripts hosted in AWS S3 behind default S3 authentication.
 
 # Entrypoint
 
-Your module need to export the [HandleRequest](./functions/HandleRequest.html) function as defined in this documentation. You can use handlers exposed as part of the argument to this function to interact with the Ketch platform at runtime.
+Your module need to export the [HandleRequest](./functions/index.handleRequest.html) function as defined in this documentation. You can use handlers exposed as part of the argument to this function to interact with the Ketch platform at runtime.
 
 # Runtime of Ketch agent
 
