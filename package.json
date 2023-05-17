@@ -4,7 +4,7 @@
   "description": "Ketch TypeScript/JavaScript Module for Ketch DSR Agent",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "all": "npm run lint && npm run format-check && npm run test && npm run build && npm run docs",
     "build": "tsc -p .",
@@ -12,7 +12,7 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "jest --runInBand --passWithNoTests",
-    "docs": "typedoc --githubPages true"
+    "docs": "npx typedoc --githubPages true"
   },
   "repository": {
     "type": "git",
@@ -28,9 +28,22 @@
     "./dist/"
   ],
   "devDependencies": {
+    "@types/jest": "^29.5.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.6",
+    "@typescript-eslint/parser": "^5.59.6",
+    "eslint": "^8.40.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin": "^1.0.1",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jest": "^27.2.1",
     "jest": "^29.5.0",
+    "jest-junit": "^16.0.0",
+    "prettier": "^2.8.8",
+    "ts-jest": "^29.1.0",
     "typedoc": "^0.24.4",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "typescript-formatter": "^7.2.2"
   },
   "dependencies": {
     "tslib": "^2.5.0"

@@ -70,3 +70,4 @@ typings/
 test-reports/
 .npmrc
 junit.xml
+.DS_Store
