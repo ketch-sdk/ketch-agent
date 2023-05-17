@@ -11,13 +11,12 @@ import { DsrRequest, DsrResponse, ConnectionConfig } from './types'
 
 /**
  * HandleRequest is the entrypoint which will be invoked by the Agent.
- * request
  */
-
 export async function handleRequest(
   request: DsrRequest,
   connectionConfig: ConnectionConfig,
 ): Promise<DsrResponse | null> {
+  console.log(request, connectionConfig)
   return new Promise<DsrResponse | null>(resolve => {
     resolve({} as DsrResponse)
   })
