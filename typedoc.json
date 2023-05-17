@@ -1,0 +1,4 @@
+{
+    "name": "Ketch Agent",
+    "entryPoints": ["src/index.ts", "src/types/index.ts"]
+}

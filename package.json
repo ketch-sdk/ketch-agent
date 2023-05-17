@@ -12,7 +12,7 @@
     "format-check": "prettier --check '**/*.ts'",
     "lint": "eslint src/**/*.ts",
     "test": "jest --runInBand --passWithNoTests",
-    "docs": "typedoc --githubPages true src/index.ts"
+    "docs": "typedoc --githubPages true"
   },
   "repository": {
     "type": "git",
