@@ -1,31 +1,35 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
-    "allowJs": false,
-    "allowSyntheticDefaultImports": true,
-    "alwaysStrict": true,
-    "declaration": true,
-    "declarationDir": "./dist",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "importHelpers": true,
-    "inlineSourceMap": true,
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "noEmit": false,
-    "noEmitOnError": true,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "lib": [
+      "es2022"
+    ],
     "outDir": "./dist",
-    "removeComments": false,
     "rootDir": "./src",
-    "skipLibCheck": true,
+    "module": "esnext",
+    "target": "es2022",
     "strict": true,
-    "stripInternal": true,
-    "target": "ES2015"
+    "declaration": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node16",
+    "verbatimModuleSyntax": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts", "**/__mocks__/**"]
+  "ts-node": {
+    "esm": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "build",
+    "node_modules",
+    "src/**/*.test.ts",
+    "**/__mocks__/**"
+  ]
 }
