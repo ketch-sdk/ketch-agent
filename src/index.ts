@@ -7,26 +7,18 @@
  *
  * @packageDocumentation
  */
-import * as api from "./api";
-import * as request from "./request";
-import * as response from "./response";
-import * as common from "./common";
+import { DsrRequest, DsrResponse, ConnectionConfig } from './types'
 
 /**
  * HandleRequest is the entrypoint which will be invoked by the Agent.
  * request
-*/
-export async function HandleRequest(api: api.AgentAPI, req: request.DSRRequest): Promise<response.DSRResponse | null> {
-  console.log(req)
-  console.log(api)
-  return new Promise<response.DSRResponse|null>((resolve) => {
-    resolve(null)
-  })
-}
+ */
 
-export {
-  api,
-  common,
-  request,
-  response
+export async function handleRequest(
+  request: DsrRequest,
+  connectionConfig: ConnectionConfig,
+): Promise<DsrResponse | null> {
+  return new Promise<DsrResponse | null>(resolve => {
+    resolve({} as DsrResponse)
+  })
 }
