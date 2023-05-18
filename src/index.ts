@@ -55,10 +55,8 @@ export enum RequestStatusReason {
 export enum Kind {
   AccessRequest = 'AccessRequest',
   AccessResponse = 'AccessResponse',
-  AccessStatusEvent = 'AccessStatusEvent',
   DeleteRequest = 'DeleteRequest',
   DeleteResponse = 'DeleteResponse',
-  DeleteStatusEvent = 'DeleteStatusEvent',
 }
 
 /**
@@ -121,15 +119,15 @@ export interface AccessRequest {
   kind: Kind
   metadata: Metadata
   request: {
-    controller: string
+    controller?: string
     property: string
     environment: string
     regulation: string
     jurisdiction: string
     identities: Identity[]
-    callbacks: Callback[]
+    callbacks?: Callback[]
     subject: DataSubject
-    context: { [key: string]: any }
+    context?: { [key: string]: any }
     submittedTimestamp: number
     dueTimestamp: number
   }
@@ -137,14 +135,14 @@ export interface AccessRequest {
 
 export interface AccessResponseBody {
   status: RequestStatus
-  reason: RequestStatusReason
-  expectedCompletionTimestamp: number
-  redirectUrl: string
-  requestId: string
-  documents: Document[]
-  context: { [key: string]: any }
-  subject: DataSubject
-  identities: Identity[]
+  reason?: RequestStatusReason
+  expectedCompletionTimestamp?: number
+  redirectUrl?: string
+  requestId?: string
+  documents?: Document[]
+  context?: { [key: string]: any }
+  subject?: DataSubject
+  identities?: Identity[]
 }
 
 /**
@@ -154,7 +152,7 @@ export interface AccessResponse {
   apiVersion: DSRVersion
   kind: Kind
   metadata: Metadata
-  responseBody: AccessResponseBody
+  response: AccessResponseBody
 }
 
 /**
@@ -167,15 +165,15 @@ export interface DeleteRequest {
   kind: Kind
   metadata: Metadata
   request: {
-    controller: string
+    controller?: string
     property: string
     environment: string
     regulation: string
     jurisdiction: string
     identities: Identity[]
-    callbacks: Callback[]
+    callbacks?: Callback[]
     subject: DataSubject
-    context: { [key: string]: any }
+    context?: { [key: string]: any }
     submittedTimestamp: number
     dueTimestamp: number
   }
@@ -183,14 +181,14 @@ export interface DeleteRequest {
 
 export interface DeleteResponseBody {
   status: RequestStatus
-  reason: RequestStatusReason
-  expectedCompletionTimestamp: number
-  redirectUrl: string
-  requestId: string
-  documents: Document[]
-  context: { [key: string]: any }
-  subject: DataSubject
-  identities: Identity[]
+  reason?: RequestStatusReason
+  expectedCompletionTimestamp?: number
+  redirectUrl?: string
+  requestId?: string
+  documents?: Document[]
+  context?: { [key: string]: any }
+  subject?: DataSubject
+  identities?: Identity[]
 }
 
 /**
