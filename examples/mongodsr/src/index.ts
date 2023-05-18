@@ -21,7 +21,15 @@ export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Pr
     await restaurants.deleteOne({ owner_email: req.request.subject.email })
     console.log('deleted')
   } catch (error) {
-    console.error(error)
+    return {
+      apiVersion: req.apiVersion,
+      kind: Kind.DeleteResponse,
+      metadata: req.metadata,
+      response: {
+        status: RequestStatus.CancelledRequestStatus,
+        reason: RequestStatusReason.OtherRequestStatusReason,
+      },
+    }
   } finally {
     console.log('in finally')
     await client.close()
