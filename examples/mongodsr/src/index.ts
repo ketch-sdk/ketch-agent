@@ -27,8 +27,8 @@ export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Pr
       metadata: req.metadata,
       response: {
         status: RequestStatus.CancelledRequestStatus,
-        reason: RequestStatusReason.OtherRequestStatusReason
-      }
+        reason: RequestStatusReason.OtherRequestStatusReason,
+      },
     }
   } finally {
     console.log('in finally')
