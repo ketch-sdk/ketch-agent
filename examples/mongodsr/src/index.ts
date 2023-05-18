@@ -26,16 +26,15 @@ export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Pr
     console.log('in finally')
     await client.close()
   }
-  return new Promise<DSRResponse>(resolve => {
-    return {
-      apiVersion: req.apiVersion,
-      kind: Kind.DeleteResponse,
-      metadata: req.metadata,
-      response: {
-        status: RequestStatus.CompletedRequestStatus,
-        reason: RequestStatusReason.Executed,
-        expectedCompletionTimestamp: Math.floor(Date.now() / 1000),
-      },
-    }
-  })
+
+  return {
+    apiVersion: req.apiVersion,
+    kind: Kind.DeleteResponse,
+    metadata: req.metadata,
+    response: {
+      status: RequestStatus.CompletedRequestStatus,
+      reason: RequestStatusReason.Executed,
+      expectedCompletionTimestamp: Math.floor(Date.now() / 1000),
+    },
+  }
 }
