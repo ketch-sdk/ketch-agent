@@ -22,44 +22,35 @@ export type DSRVersion = 'dsr/v1'
 /**
  * The status of the Data Subject Request.
  */
-export enum RequestStatus {
-  UnknownRequestStatus = 'unknown',
-  PendingRequestStatus = 'pending',
-  InProgressRequestStatus = 'in_progress',
-  CompletedRequestStatus = 'completed',
-  CancelledRequestStatus = 'cancelled',
-  DeniedRequestStatus = 'denied',
-}
+export type RequestStatus = 'unknown' | 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'denied'
 
 /**
  * The reason for the status of the Data Subject Request.
  */
-export enum RequestStatusReason {
-  UnknownRequestStatusReason = 'unknown',
-  NeedUserVerificationRequestStatusReason = 'need_user_verification',
-  Requested = 'requested',
-  InsufficientIdentification = 'insufficient_identification',
-  Executed = 'executed',
-  SuspectedFraudRequestStatusReason = '`suspected_fraud`',
-  InsufficientVerificationRequestStatusReason = 'insufficient_verification',
-  NoMatchRequestStatusReason = 'no_match',
-  ClaimNotCoveredRequestStatusReason = 'claim_not_covered',
-  OutsideJurisdictionRequestStatusReason = 'outside_jurisdiction',
-  TooManyRequestsRequestStatusReason = 'too_many_requests',
-  OtherRequestStatusReason = 'other',
-}
+export type RequestStatusReason =
+  | 'unknown'
+  | 'need_user_verification'
+  | 'requested'
+  | 'insufficient_identification'
+  | 'executed'
+  | '`suspected_fraud`'
+  | 'insufficient_verification'
+  | 'no_match'
+  | 'claim_not_covered'
+  | 'outside_jurisdiction'
+  | 'too_many_requests'
+  | 'other'
 
 /**
  * Kind of the request and response. Also used in type narrowing.
  */
-export enum Kind {
-  AccessRequest = 'AccessRequest',
-  AccessResponse = 'AccessResponse',
-  AccessStatusEvent = 'AccessStatusEvent',
-  DeleteRequest = 'DeleteRequest',
-  DeleteResponse = 'DeleteResponse',
-  DeleteStatusEvent = 'DeleteStatusEvent',
-}
+export type Kind =
+  | 'AccessRequest'
+  | 'AccessResponse'
+  | 'AccessStatusEvent'
+  | 'DeleteRequest'
+  | 'DeleteResponse'
+  | 'DeleteStatusEvent'
 
 /**
  * The Identity object describes the identity of a Data Subject.
@@ -118,9 +109,9 @@ export interface Metadata {
  */
 export interface AccessRequest {
   apiVersion: DSRVersion
-  kind: Kind.AccessRequest
+  kind: Kind
   metadata: Metadata
-  requestBody: {
+  request: {
     controller: string
     property: string
     environment: string
@@ -152,7 +143,7 @@ export interface AccessResponseBody {
  */
 export interface AccessResponse {
   apiVersion: DSRVersion
-  kind: Kind.AccessResponse
+  kind: Kind
   metadata: Metadata
   responseBody: AccessResponseBody
 }
@@ -165,7 +156,7 @@ export interface AccessResponse {
  */
 export interface AccessStatusEvent {
   apiVersion: DSRVersion
-  kind: Kind.AccessStatusEvent
+  kind: Kind
   metadata: Metadata
   event: AccessResponseBody
 }
@@ -177,9 +168,9 @@ export interface AccessStatusEvent {
  */
 export interface DeleteRequest {
   apiVersion: DSRVersion
-  kind: Kind.DeleteRequest
+  kind: Kind
   metadata: Metadata
-  requestBody: {
+  request: {
     controller: string
     property: string
     environment: string
@@ -211,7 +202,7 @@ export interface DeleteResponseBody {
  */
 export interface DeleteResponse {
   apiVersion: DSRVersion
-  kind: Kind.DeleteResponse
+  kind: Kind
   metadata: Metadata
   response: DeleteResponseBody
 }
@@ -224,7 +215,7 @@ export interface DeleteResponse {
  */
 export interface DeleteStatusEvent {
   apiVersion: DSRVersion
-  kind: Kind.DeleteStatusEvent
+  kind: Kind
   metadata: Metadata
   event: DeleteResponseBody
 }

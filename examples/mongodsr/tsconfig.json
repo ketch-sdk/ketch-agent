@@ -4,6 +4,8 @@
     "lib": [
       "es2022"
     ],
+    "outDir": "./dist",
+    "rootDir": "./src",
     "module": "esnext",
     "target": "es2022",
     "strict": true,
