@@ -7,7 +7,7 @@ Ketch Agent provides a platform for executing custom scripts for a rights invoca
 Ketch Agent is a containerized application that is deployed inside your VPC as part the transponder deployment.
 When the transponder is connected and authenticated to Ketch, the agent periodically checks for any DSR Right activity that needs to be executed.
 When a user invokes their DSR Right, the right is forwarded to the agent which then downloads your nodejs module and executes it dynamically.
-Currently, we support scripts hosted in AWS S3 behind default S3 authentication. You also have the option of hosting the script in a webserver that is accessible to the Ketch Agent at runtime.
+Currently, we support scripts located in your local file system, or hosted on a public http server, or in an AWS S3 bucket behind default S3 authentication.
 
 # Entrypoint
 
