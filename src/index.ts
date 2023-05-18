@@ -15,7 +15,7 @@
 /**
  * HandleRequest is the entrypoint which will be invoked by the Agent.
  */
-export type HandleRequest = (request: DsrRequest, connectionConfig: ConnectionConfig) => Promise<DsrResponse>
+export type HandleRequest = (request: DSRRequest, connectionConfig: ConnectionConfig) => Promise<DSRResponse>
 
 export type DSRVersion = 'dsr/v1'
 
@@ -221,14 +221,14 @@ export interface DeleteStatusEvent {
 }
 
 /**
- * Dsr Request
+ * DSR Request
  */
-export type DsrRequest = AccessRequest | DeleteRequest
+export type DSRRequest = AccessRequest | DeleteRequest
 
 /**
- * Dsr Response
+ * DSR Response
  */
-export type DsrResponse = AccessResponse | DeleteResponse
+export type DSRResponse = AccessResponse | DeleteResponse
 
 /**
  * ConnectionConfig is the key value pair of the connection parameters provided in the transponder UI

@@ -1,11 +1,7 @@
-import {
-  type DsrRequest,
-  type DsrResponse,
-  type ConnectionConfig,
-} from '@ketch-sdk/ketch-agent'
+import { type DSRRequest, type DSRResponse, type ConnectionConfig } from '@ketch-sdk/ketch-agent'
 import { MongoClient } from 'mongodb'
 
-export async function HandleRequest(req: DsrRequest, conn: ConnectionConfig): Promise<DsrResponse> {
+export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Promise<DSRResponse> {
   console.log(req)
   console.log(conn)
   let uri = `mongodb+srv://${conn.username}:${conn.password}@${conn.host}/?retryWrites=true&w=majority`
@@ -23,7 +19,7 @@ export async function HandleRequest(req: DsrRequest, conn: ConnectionConfig): Pr
     console.log('in finally')
     await client.close()
   }
-  return new Promise<DsrResponse>(resolve => {
+  return new Promise<DSRResponse>(resolve => {
     return {
       apiVersion: req.apiVersion,
       kind: 'DeleteStatusEvent',
