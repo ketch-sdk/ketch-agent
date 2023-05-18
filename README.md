@@ -17,6 +17,12 @@ Your module need to export the [HandleRequest](./types/HandleRequest.html) funct
 
 - Nodejs LTS/hydrogen (v18.16.0)
 
+# Typescript
+
+```shell
+npm install --save-dev @ketch-sdk/ketch-agent
+```
+
 # Examples
 - Refer to https://github.com/ketch-sdk/ketch-agent/tree/main/examples/ for example implementations.
 
