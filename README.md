@@ -17,6 +17,9 @@ Your module need to export the [HandleRequest](./types/HandleRequest.html) funct
 
 - Nodejs LTS/hydrogen (v18.16.0)
 
+# Examples
+- Refer to https://github.com/ketch-sdk/ketch-agent/tree/main/examples/ for example implementations.
+
 # More information
 
 Reach out to support@ketch.com if you have any questions on how to leverage this integration.

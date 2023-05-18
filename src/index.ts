@@ -15,7 +15,7 @@
 /**
  * HandleRequest is the entrypoint which will be invoked by the Agent.
  */
-export type HandleRequest = (request: DsrRequest, connectionConfig: ConnectionConfig) => Promise<DsrResponse>
+export type HandleRequest = (request: DSRRequest, connectionConfig: ConnectionConfig) => Promise<DSRResponse>
 
 export type DSRVersion = 'dsr/v1'
 
@@ -55,10 +55,8 @@ export enum RequestStatusReason {
 export enum Kind {
   AccessRequest = 'AccessRequest',
   AccessResponse = 'AccessResponse',
-  AccessStatusEvent = 'AccessStatusEvent',
   DeleteRequest = 'DeleteRequest',
   DeleteResponse = 'DeleteResponse',
-  DeleteStatusEvent = 'DeleteStatusEvent',
 }
 
 /**
@@ -118,33 +116,33 @@ export interface Metadata {
  */
 export interface AccessRequest {
   apiVersion: DSRVersion
-  kind: Kind.AccessRequest
+  kind: Kind
   metadata: Metadata
-  requestBody: {
-    controller: string
+  request: {
+    controller?: string
     property: string
     environment: string
     regulation: string
     jurisdiction: string
     identities: Identity[]
-    callbacks: Callback[]
+    callbacks?: Callback[]
     subject: DataSubject
-    context: { [key: string]: any }
+    context?: { [key: string]: any }
     submittedTimestamp: number
     dueTimestamp: number
   }
 }
 
 export interface AccessResponseBody {
-  status: string
-  reason: string
-  expectedCompletionTimestamp: number
-  redirectUrl: string
-  requestId: string
-  documents: Document[]
-  context: { [key: string]: any }
-  subject: DataSubject
-  identities: Identity[]
+  status: RequestStatus
+  reason?: RequestStatusReason
+  expectedCompletionTimestamp?: number
+  redirectUrl?: string
+  requestId?: string
+  documents?: Document[]
+  context?: { [key: string]: any }
+  subject?: DataSubject
+  identities?: Identity[]
 }
 
 /**
@@ -152,22 +150,9 @@ export interface AccessResponseBody {
  */
 export interface AccessResponse {
   apiVersion: DSRVersion
-  kind: Kind.AccessResponse
+  kind: Kind
   metadata: Metadata
-  responseBody: AccessResponseBody
-}
-
-/**
- * When the status of Access Request has changed, a AccessStatusEvent event JSON object should be sent to all the
- * callbacks specified in the request. The results and documents are merged with any cached results from previous
- * events. New documents are added and existing documents are updated.
- * Once the status is set to completed, cancelled or denied, then no further events will be accepted.
- */
-export interface AccessStatusEvent {
-  apiVersion: DSRVersion
-  kind: Kind.AccessStatusEvent
-  metadata: Metadata
-  event: AccessResponseBody
+  response: AccessResponseBody
 }
 
 /**
@@ -177,33 +162,33 @@ export interface AccessStatusEvent {
  */
 export interface DeleteRequest {
   apiVersion: DSRVersion
-  kind: Kind.DeleteRequest
+  kind: Kind
   metadata: Metadata
-  requestBody: {
-    controller: string
+  request: {
+    controller?: string
     property: string
     environment: string
     regulation: string
     jurisdiction: string
     identities: Identity[]
-    callbacks: Callback[]
+    callbacks?: Callback[]
     subject: DataSubject
-    context: { [key: string]: any }
+    context?: { [key: string]: any }
     submittedTimestamp: number
     dueTimestamp: number
   }
 }
 
 export interface DeleteResponseBody {
-  status: string
-  reason: string
-  expectedCompletionTimestamp: number
-  redirectUrl: string
-  requestId: string
-  documents: Document[]
-  context: { [key: string]: any }
-  subject: DataSubject
-  identities: Identity[]
+  status: RequestStatus
+  reason?: RequestStatusReason
+  expectedCompletionTimestamp?: number
+  redirectUrl?: string
+  requestId?: string
+  documents?: Document[]
+  context?: { [key: string]: any }
+  subject?: DataSubject
+  identities?: Identity[]
 }
 
 /**
@@ -211,33 +196,20 @@ export interface DeleteResponseBody {
  */
 export interface DeleteResponse {
   apiVersion: DSRVersion
-  kind: Kind.DeleteResponse
+  kind: Kind
   metadata: Metadata
   response: DeleteResponseBody
 }
 
 /**
- * When the status of Delete Request has changed, a DeleteStatusEvent event should be sent to all the callbacks
- * specified in the request.  The results and documents are merged with any cached results from previous events.
- * New documents are added and existing documents are updated. Once the status is set to completed, cancelled or denied,
- * then no further events will be accepted.
+ * DSR Request
  */
-export interface DeleteStatusEvent {
-  apiVersion: DSRVersion
-  kind: Kind.DeleteStatusEvent
-  metadata: Metadata
-  event: DeleteResponseBody
-}
+export type DSRRequest = AccessRequest | DeleteRequest
 
 /**
- * Dsr Request
+ * DSR Response
  */
-export type DsrRequest = AccessRequest | DeleteRequest
-
-/**
- * Dsr Response
- */
-export type DsrResponse = AccessResponse | DeleteResponse
+export type DSRResponse = AccessResponse | DeleteResponse
 
 /**
  * ConnectionConfig is the key value pair of the connection parameters provided in the transponder UI
