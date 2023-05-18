@@ -1,4 +1,11 @@
-import { type DSRRequest, type DSRResponse, type ConnectionConfig, Kind } from '@ketch-sdk/ketch-agent'
+import {
+  type DSRRequest,
+  type DSRResponse,
+  type ConnectionConfig,
+  Kind,
+  RequestStatus,
+  RequestStatusReason,
+} from '@ketch-sdk/ketch-agent'
 import { MongoClient } from 'mongodb'
 
 export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Promise<DSRResponse> {
@@ -25,12 +32,9 @@ export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Pr
       kind: Kind.DeleteResponse,
       metadata: req.metadata,
       response: {
-        status: 'completed',
-        reason: 'executed',
-        expectedCompletionTimestamp: Date.now(),
-        identities: req.request.identities,
-        subject: req.request.subject,
-        context: req.request.context,
+        status: RequestStatus.CompletedRequestStatus,
+        reason: RequestStatusReason.Executed,
+        expectedCompletionTimestamp: Math.floor(Date.now() / 1000),
       },
     }
   })
