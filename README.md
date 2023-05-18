@@ -11,11 +11,17 @@ Currently, we support scripts located in your local file system, or hosted on a 
 
 # Entrypoint
 
-Your module need to export the [HandleRequest](./types/HandleRequest.html) function as defined in this documentation. You can use handlers exposed as part of the argument to this function to interact with the Ketch platform at runtime.
+Your module need to export the [HandleRequest](./types/HandleRequest.html) function as defined in [the documentation](https://ketch-sdk.github.io/ketch-agent/index.html). You can use handlers exposed as part of the argument to this function to interact with the Ketch platform at runtime.
 
 # Runtime of Ketch agent
 
 - Nodejs LTS/hydrogen (v18.16.0)
+
+# Typescript
+
+```shell
+npm install --save-dev @ketch-sdk/ketch-agent
+```
 
 # Examples
 - Refer to https://github.com/ketch-sdk/ketch-agent/tree/main/examples/ for example implementations.
