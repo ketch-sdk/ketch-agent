@@ -22,35 +22,44 @@ export type DSRVersion = 'dsr/v1'
 /**
  * The status of the Data Subject Request.
  */
-export type RequestStatus = 'unknown' | 'pending' | 'in_progress' | 'completed' | 'cancelled' | 'denied'
+export enum RequestStatus {
+  UnknownRequestStatus = 'unknown',
+  PendingRequestStatus = 'pending',
+  InProgressRequestStatus = 'in_progress',
+  CompletedRequestStatus = 'completed',
+  CancelledRequestStatus = 'cancelled',
+  DeniedRequestStatus = 'denied',
+}
 
 /**
  * The reason for the status of the Data Subject Request.
  */
-export type RequestStatusReason =
-  | 'unknown'
-  | 'need_user_verification'
-  | 'requested'
-  | 'insufficient_identification'
-  | 'executed'
-  | '`suspected_fraud`'
-  | 'insufficient_verification'
-  | 'no_match'
-  | 'claim_not_covered'
-  | 'outside_jurisdiction'
-  | 'too_many_requests'
-  | 'other'
+export enum RequestStatusReason {
+  UnknownRequestStatusReason = 'unknown',
+  NeedUserVerificationRequestStatusReason = 'need_user_verification',
+  Requested = 'requested',
+  InsufficientIdentification = 'insufficient_identification',
+  Executed = 'executed',
+  SuspectedFraudRequestStatusReason = '`suspected_fraud`',
+  InsufficientVerificationRequestStatusReason = 'insufficient_verification',
+  NoMatchRequestStatusReason = 'no_match',
+  ClaimNotCoveredRequestStatusReason = 'claim_not_covered',
+  OutsideJurisdictionRequestStatusReason = 'outside_jurisdiction',
+  TooManyRequestsRequestStatusReason = 'too_many_requests',
+  OtherRequestStatusReason = 'other',
+}
 
 /**
  * Kind of the request and response. Also used in type narrowing.
  */
-export type Kind =
-  | 'AccessRequest'
-  | 'AccessResponse'
-  | 'AccessStatusEvent'
-  | 'DeleteRequest'
-  | 'DeleteResponse'
-  | 'DeleteStatusEvent'
+export enum Kind {
+  AccessRequest = 'AccessRequest',
+  AccessResponse = 'AccessResponse',
+  AccessStatusEvent = 'AccessStatusEvent',
+  DeleteRequest = 'DeleteRequest',
+  DeleteResponse = 'DeleteResponse',
+  DeleteStatusEvent = 'DeleteStatusEvent',
+}
 
 /**
  * The Identity object describes the identity of a Data Subject.
@@ -127,8 +136,8 @@ export interface AccessRequest {
 }
 
 export interface AccessResponseBody {
-  status: string
-  reason: string
+  status: RequestStatus
+  reason: RequestStatusReason
   expectedCompletionTimestamp: number
   redirectUrl: string
   requestId: string
@@ -146,19 +155,6 @@ export interface AccessResponse {
   kind: Kind
   metadata: Metadata
   responseBody: AccessResponseBody
-}
-
-/**
- * When the status of Access Request has changed, a AccessStatusEvent event JSON object should be sent to all the
- * callbacks specified in the request. The results and documents are merged with any cached results from previous
- * events. New documents are added and existing documents are updated.
- * Once the status is set to completed, cancelled or denied, then no further events will be accepted.
- */
-export interface AccessStatusEvent {
-  apiVersion: DSRVersion
-  kind: Kind
-  metadata: Metadata
-  event: AccessResponseBody
 }
 
 /**
@@ -186,8 +182,8 @@ export interface DeleteRequest {
 }
 
 export interface DeleteResponseBody {
-  status: string
-  reason: string
+  status: RequestStatus
+  reason: RequestStatusReason
   expectedCompletionTimestamp: number
   redirectUrl: string
   requestId: string
@@ -205,19 +201,6 @@ export interface DeleteResponse {
   kind: Kind
   metadata: Metadata
   response: DeleteResponseBody
-}
-
-/**
- * When the status of Delete Request has changed, a DeleteStatusEvent event should be sent to all the callbacks
- * specified in the request.  The results and documents are merged with any cached results from previous events.
- * New documents are added and existing documents are updated. Once the status is set to completed, cancelled or denied,
- * then no further events will be accepted.
- */
-export interface DeleteStatusEvent {
-  apiVersion: DSRVersion
-  kind: Kind
-  metadata: Metadata
-  event: DeleteResponseBody
 }
 
 /**

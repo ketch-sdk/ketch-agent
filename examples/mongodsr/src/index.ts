@@ -1,4 +1,4 @@
-import { type DSRRequest, type DSRResponse, type ConnectionConfig } from '@ketch-sdk/ketch-agent'
+import { type DSRRequest, type DSRResponse, type ConnectionConfig, Kind } from '@ketch-sdk/ketch-agent'
 import { MongoClient } from 'mongodb'
 
 export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Promise<DSRResponse> {
@@ -22,7 +22,7 @@ export async function HandleRequest(req: DSRRequest, conn: ConnectionConfig): Pr
   return new Promise<DSRResponse>(resolve => {
     return {
       apiVersion: req.apiVersion,
-      kind: 'DeleteStatusEvent',
+      kind: Kind.DeleteResponse,
       metadata: req.metadata,
       response: {
         status: 'completed',
